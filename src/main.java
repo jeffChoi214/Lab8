@@ -33,7 +33,6 @@ public class main {
                     else {
                         System.out.println("Please enter a number between 0 and 4");
                     } 
-
                 }
 
                 totalCounter += results2[i][j];
@@ -55,7 +54,6 @@ public class main {
             System.out.println("Batter " + i + " batting average: " + String.format("%.3f", battingAvgs[i]));
             System.out.println("Batter " + i + " slugging Percentage: " + String.format("%.3f", slugPcs[i]));
         }
-
     }
 
     public static void main (String[] args) {
@@ -92,5 +90,4 @@ public class main {
             }
         }
     }
-
 }
