@@ -56,6 +56,21 @@ public class main {
         }
     }
 
+    public static int getBatters(Scanner sc) {
+        int numBatters;
+
+        System.out.print("Enter the number of batters: " ); 
+        
+        while (!sc.hasNextInt()) {
+            System.out.println("Please enter an integer!");
+            sc.next();
+        }
+        numBatters = sc.nextInt();
+        sc.nextLine();
+        
+        return numBatters;
+    }
+
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
         int numBatters;
@@ -66,9 +81,7 @@ public class main {
 
         while (true) {
             // loop begins here
-            System.out.print("Enter the number of batters: " ); 
-            numBatters = sc.nextInt();
-            sc.nextLine();
+            numBatters = getBatters(sc);
             
             double[] battingAvgs = new double[numBatters];
             double[] slugPcs = new double[numBatters];
