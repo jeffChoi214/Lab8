@@ -5,7 +5,33 @@ import java.util.Scanner;
 */
 
 public class main {
-    public static void runLoop(Scanner sc, int numBatters, double[] battingAvgs, double[] slugPcs) {
+    public static char startLoop (Scanner sc) {
+        int numBatters;
+        char toContinue;
+
+        System.out.print("Enter the number of batters: " );
+        numBatters = sc.nextInt();
+        sc.nextLine();
+
+        double[] battingAvgs = new double[numBatters];
+        double[] slugPcs = new double[numBatters];
+
+        runLoop(sc, numBatters, battingAvgs, slugPcs);
+        printStats(numBatters, battingAvgs, slugPcs);
+
+        // could put the below in a method if i used boolean variables for the while loops
+        while (true) {
+            System.out.print("Another round? (y/n): ");
+            toContinue = sc.next().charAt(0);
+            if (toContinue == 'y' || toContinue == 'Y' || toContinue == 'n' || toContinue == 'N') {
+                break;
+            }
+        }
+
+        return toContinue;
+    }
+
+    public static void runLoop (Scanner sc, int numBatters, double[] battingAvgs, double[] slugPcs) {
         int hitCounter = 0;
         int totalCounter = 0;
         int arraySize;
@@ -49,7 +75,7 @@ public class main {
         }
     }
 
-    public static void printStats(int numBatters, double[] battingAvgs, double[] slugPcs) {
+    public static void printStats (int numBatters, double[] battingAvgs, double[] slugPcs) {
         for (int i = 0; i < numBatters; ++i) {
             System.out.println("Batter " + i + " batting average: " + String.format("%.3f", battingAvgs[i]));
             System.out.println("Batter " + i + " slugging Percentage: " + String.format("%.3f", slugPcs[i]));
@@ -58,32 +84,13 @@ public class main {
 
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
-        int numBatters;
         char toContinue;
 
         System.out.println("Welcome to the Batting Average Calculator!");
         System.out.println("");
 
         while (true) {
-            // loop begins here
-            System.out.print("Enter the number of batters: " ); 
-            numBatters = sc.nextInt();
-            sc.nextLine();
-            
-            double[] battingAvgs = new double[numBatters];
-            double[] slugPcs = new double[numBatters];
-
-            runLoop(sc, numBatters, battingAvgs, slugPcs);
-            printStats(numBatters, battingAvgs, slugPcs);
-
-            // could put the below in a method if i used boolean variables for the while loops
-            while (true) {
-                System.out.print("Another round? (y/n): ");
-                toContinue = sc.next().charAt(0);
-                if (toContinue == 'y' || toContinue == 'Y' || toContinue == 'n' || toContinue == 'N') {
-                    break;
-                }
-            }
+            toContinue = startLoop(sc);
 
             if (toContinue == 'n' || toContinue == 'N') {
                 break;
